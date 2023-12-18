@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Room</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Find Your Class</h1>
+
+
+
+
+
+<form onsubmit="checkAndOpenWindow(event)">
+    <label for="buildingName">Building Name:</label>
+    <input type="text" id="buildingName" name="buildingName" required>
+
+    <br>
+
+    <label for="roomNumber">Room Number:</label>
+    <input type="text" id="roomNumber" name="roomNumber" required>
+
+    <br><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+<div id="frame-container">
+    <iframe id="myFrame" href="https://www.mappedin.com/" width="100%" height="650" frameborder="0" style="border:0" src="https://maker.mappedin.com/map/6552a58c7d1af404b1a17839?embedded=true" ></iframe>
+    
+</div>
+
+<script>
+    function checkAndOpenWindow(event) {
+        event.preventDefault();  // Prevent the form from submitting
+
+        var buildingName = document.getElementById("buildingName").value.toLowerCase();
+        var roomNumber = document.getElementById("roomNumber").value;
+        var url = " ";
+
+        // Get the iframe element
+        var frame = document.getElementById("myFrame");
+
+        // Change the iframe source URL
+        
+
+        // Check if buildingName is "henson" and roomNumber starts with "1"
+        if ((buildingName === "henson" || buildingName == "Henson")) {
+            // Open a new window with the specified URL
+            if(roomNumber.startsWith("1")) {
+                url = "https://maker.mappedin.com/map/6552a58c7d1af404b1a17839/directions?map=" + "HensonFL1" + "&location=" + roomNumber + "&departure=Main%20Entrance";  // Replace with your actual URL
+                frame.src = url;
+            }
+        } else if (buildingName == "perdue" || buildingName == "Perdue"){
+            url = "https://maker.mappedin.com/map/6552a58c7d1af404b1a17839/directions?map=" + "PerdueFL1" + "&location=" + roomNumber + "&departure=PerMain";
+            frame.src = url;
+        } else {
+            // Handle other cases or conditions here
+            alert("Conditions not met. Please check the input values.");
+        }
+    }
+
+</script>
+
+<!-- Replace 'your_url_here' with the actual URL you want to display -->
+
+</body>
+</html>
