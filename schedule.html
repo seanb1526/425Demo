@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Schedule Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 16px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+        }
+
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Class Schedule Form</h2>
+    </header>
+
+    <form id="class-schedule-form">
+        <!-- Class 1 -->
+        <label for="class1-building">Building Name:</label>
+        <input type="text" id="class1-building" name="class1-building" required>
+
+        <label for="class1-room">Room Number:</label>
+        <input type="text" id="class1-room" name="class1-room" required>
+
+        <!-- Class 2 -->
+        <label for="class2-building">Building Name:</label>
+        <input type="text" id="class2-building" name="class2-building" required>
+
+        <label for="class2-room">Room Number:</label>
+        <input type="text" id="class2-room" name="class2-room" required>
+
+        <!-- Class 3 -->
+        <label for="class3-building">Building Name:</label>
+        <input type="text" id="class3-building" name="class3-building" required>
+
+        <label for="class3-room">Room Number:</label>
+        <input type="text" id="class3-room" name="class3-room" required>
+
+        <!-- Class 4 -->
+        <label for="class4-building">Building Name:</label>
+        <input type="text" id="class4-building" name="class4-building" required>
+
+        <label for="class4-room">Room Number:</label>
+        <input type="text" id="class4-room" name="class4-room" required>
+
+        
+    </form>
+        <button type="button" onclick="addClass()">Add Class</button>
+        <button type="button" onclick="deleteClass()">Delete Class</button>
+        <button type="submit">Submit</button>
+    <script>
+        function addClass() {
+            const form = document.getElementById('class-schedule-form');
+            const classCount = form.querySelectorAll('label[for^="class"]').length / 2 + 1;
+
+            const newLabelBuilding = document.createElement('label');
+            newLabelBuilding.setAttribute('for', `class${classCount}-building`);
+            newLabelBuilding.textContent = 'Building Name:';
+            form.appendChild(newLabelBuilding);
+
+            const newInputBuilding = document.createElement('input');
+            newInputBuilding.setAttribute('type', 'text');
+            newInputBuilding.setAttribute('id', `class${classCount}-building`);
+            newInputBuilding.setAttribute('name', `class${classCount}-building`);
+            newInputBuilding.setAttribute('required', 'true');
+            form.appendChild(newInputBuilding);
+
+            const newLabelRoom = document.createElement('label');
+            newLabelRoom.setAttribute('for', `class${classCount}-room`);
+            newLabelRoom.textContent = 'Room Number:';
+            form.appendChild(newLabelRoom);
+
+            const newInputRoom = document.createElement('input');
+            newInputRoom.setAttribute('type', 'text');
+            newInputRoom.setAttribute('id', `class${classCount}-room`);
+            newInputRoom.setAttribute('name', `class${classCount}-room`);
+            newInputRoom.setAttribute('required', 'true');
+            form.appendChild(newInputRoom);
+        }
+
+        function deleteClass() {
+            const form = document.getElementById('class-schedule-form');
+            const classCount = form.querySelectorAll('label[for^="class"]').length / 2;
+
+            if (classCount > 1) {
+                for (let i = 0; i < 4; i++) {
+                    form.removeChild(form.lastChild);
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
+
